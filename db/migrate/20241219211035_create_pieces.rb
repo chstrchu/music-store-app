@@ -4,7 +4,7 @@ class CreatePieces < ActiveRecord::Migration[7.2]
       t.string :name, index: true
       t.string :composer, index: true
       t.date :publication_date
-      t.string :type, index: true
+      t.string :form, index: true
       t.string :key
 
       t.timestamps

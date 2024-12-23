@@ -15,13 +15,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_19_212046) do
     t.string "name"
     t.string "composer"
     t.date "publication_date"
-    t.string "type"
+    t.string "form"
     t.string "key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["composer"], name: "index_pieces_on_composer"
+    t.index ["form"], name: "index_pieces_on_form"
     t.index ["name"], name: "index_pieces_on_name"
-    t.index ["type"], name: "index_pieces_on_type"
   end
 
   create_table "scores", force: :cascade do |t|
