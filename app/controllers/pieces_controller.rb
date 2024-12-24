@@ -2,7 +2,12 @@ class PiecesController < ApplicationController
   before_action :set_piece, only: %i[ show update destroy ]
 
   def index
-    @pieces = Piece.all
+    filters = filter_params
+    @pieces = Piece.by_composer(filters[:composer])
+                   .by_form(filters[:form])
+                   .by_key(filters[:key])
+                   .composed_before(filters[:composed_before])
+                   .composed_after(filters[:composed_after])
 
     render json: @pieces
   end
@@ -51,6 +56,7 @@ class PiecesController < ApplicationController
   end
 
   def filter_params
-    params.permit(:composer, :form, :key)
+    params.permit(:id, :composer, :form, :key, :composed_before,
+                  :composed_after)
   end
 end
