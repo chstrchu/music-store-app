@@ -45,6 +45,6 @@ class ScoresController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def score_params
-      params.fetch(:score, {}).permit(:name, :composer, :publisher)
+      params.fetch(:score, {}).permit(:name, :composer, :publisher, :piece_id)
     end
 end

@@ -1,6 +1,6 @@
 require "test_helper"
 
-class PieceTest < ActiveSupport::TestCase
+class RecordingTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
