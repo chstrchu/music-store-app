@@ -3,11 +3,13 @@ class PiecesController < ApplicationController
 
   def index
     filters = filter_params
+    page_num = page_params.present? ? page_params[:page] : 1
     @pieces = Piece.by_composer(filters[:composer])
                    .by_form(filters[:form])
                    .by_key(filters[:key])
                    .composed_before(filters[:composed_before])
                    .composed_after(filters[:composed_after])
+                   .page(page_num)
 
     render json: @pieces
   end
@@ -58,5 +60,9 @@ class PiecesController < ApplicationController
   def filter_params
     params.permit(:id, :composer, :form, :key, :composed_before,
                   :composed_after)
+  end
+
+  def page_params
+    params.permit(:page)
   end
 end

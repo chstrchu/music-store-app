@@ -27,6 +27,9 @@ gem "bootsnap", require: false
 # Factories for testing
 gem "factory_bot", "~> 6.5"
 
+# Pagination
+gem 'kaminari'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
