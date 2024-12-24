@@ -4,12 +4,20 @@ class PiecesController < ApplicationController
   def index
     filters = filter_params
     page_num = page_params.present? ? page_params[:page] : 1
+    order_params = sort_params
     @pieces = Piece.by_composer(filters[:composer])
-                   .by_form(filters[:form])
-                   .by_key(filters[:key])
+                   .by_form(filters[:form]) .by_key(filters[:key])
                    .composed_before(filters[:composed_before])
                    .composed_after(filters[:composed_after])
                    .page(page_num)
+
+    if order_params.present?
+      sql_string = []
+      order_params[:sort_by].each do |k, v|
+        sql_string << "#{k} #{v}"
+      end
+      @pieces = @pieces.order(Arel.sql("#{sql_string.join(", ")}"))
+    end
 
     render json: @pieces
   end
@@ -64,5 +72,9 @@ class PiecesController < ApplicationController
 
   def page_params
     params.permit(:page)
+  end
+
+  def sort_params
+    params.permit(sort_by: {})
   end
 end
