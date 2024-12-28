@@ -16,5 +16,14 @@
 	    "alternate": "app/controllers/{}.rb"
 	},
 
+	"app/sidekiq/*.rb": {
+    "type": "job",
+    "alternate": "spec/sidekiq/{}_spec.rb"
+  },
+	"spec/sidekiq/*_spec.rb": {
+	    "type": "jobTest",
+	    "alternate": "app/sidekiq/{}.rb"
+	},
+
 	"app/helpers/*_helper.rb": { "type": "helper" }
 }
