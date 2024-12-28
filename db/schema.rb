@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_23_232021) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_28_192350) do
   create_table "pieces", force: :cascade do |t|
     t.string "name"
     t.string "composer"
@@ -22,6 +22,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_23_232021) do
     t.index ["composer"], name: "index_pieces_on_composer"
     t.index ["form"], name: "index_pieces_on_form"
     t.index ["name"], name: "index_pieces_on_name"
+  end
+
+  create_table "pieces_recordings", id: false, force: :cascade do |t|
+    t.integer "piece_id"
+    t.integer "recording_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["piece_id"], name: "index_pieces_recordings_on_piece_id"
+    t.index ["recording_id"], name: "index_pieces_recordings_on_recording_id"
   end
 
   create_table "recordings", force: :cascade do |t|

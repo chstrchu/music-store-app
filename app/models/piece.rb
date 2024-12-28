@@ -1,4 +1,6 @@
 class Piece < ApplicationRecord
+  has_and_belongs_to_many :recordings
+
   scope :by_composer, -> (composer) { where(composer: composer) if composer.present? }
   scope :by_key, -> (key) { where(key: key) if key.present? }
   scope :by_form, -> (form) { where(form: form) if form.present? }
