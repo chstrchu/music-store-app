@@ -10,7 +10,7 @@ class RecordingsController < ApplicationController
 
   # GET /recordings/1
   def show
-    render json: @recording
+    render json: @recording, include: ['pieces']
   end
 
   # POST /recordings
