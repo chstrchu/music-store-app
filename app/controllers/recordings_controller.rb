@@ -3,7 +3,11 @@ class RecordingsController < ApplicationController
 
   # GET /recordings
   def index
-    @recordings = Recording.all
+    composer, piece = piece_search_params
+    @recordings = Recording.by_name(name_params[:recording_name])
+                           .by_artist_name(artist_search_params[:artist_name])
+                           .by_composer(composer)
+                           .by_piece_name(piece)
 
     render json: @recordings
   end
@@ -39,13 +43,32 @@ class RecordingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_recording
-      @recording = Recording.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def recording_params
-      params.fetch(:recording, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_recording
+    @recording = Recording.find(params[:id])
+  end
+
+  def name_params
+    params.permit(:name)
+  end
+
+  def piece_search_params
+    param_string = params.permit(:piece_search)[:piece_search]
+    return unless param_string
+
+    search_tokens = param_string.split(' ')
+    composer = search_tokens[0]
+    piece = search_tokens[1..].join(' ')
+    [composer, piece]
+  end
+
+  def artist_search_params
+    params.permit(:artist_search)
+  end
+
+  # Only allow a list of trusted parameters through.
+  def recording_params
+    params.fetch(:recording, {})
+  end
 end
