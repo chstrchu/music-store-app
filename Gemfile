@@ -42,6 +42,7 @@ gem 'active_model_serializers'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  gem "awesome_print"
   gem "brakeman", require: false
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 

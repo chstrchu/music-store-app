@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_30_214757) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_03_231445) do
   create_table "artists", force: :cascade do |t|
     t.string "name"
     t.text "bio"
@@ -35,6 +35,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_30_214757) do
     t.string "key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "catalogue_num"
     t.index ["composer"], name: "index_pieces_on_composer"
     t.index ["form"], name: "index_pieces_on_form"
     t.index ["name"], name: "index_pieces_on_name"
@@ -54,6 +55,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_30_214757) do
     t.date "release_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
+    t.integer "quantity", default: 0
+    t.index ["quantity"], name: "index_recordings_on_quantity"
     t.index ["release_date"], name: "index_recordings_on_release_date"
   end
 

@@ -78,6 +78,7 @@ GEM
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
     ast (2.4.2)
+    awesome_print (1.9.2)
     base64 (0.2.0)
     benchmark (0.4.0)
     bigdecimal (3.1.8)
@@ -317,6 +318,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  awesome_print
   bootsnap
   brakeman
   debug
